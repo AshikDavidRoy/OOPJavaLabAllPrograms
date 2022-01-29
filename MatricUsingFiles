@@ -1,0 +1,107 @@
+package Fileses;
+import java.io.*;
+import java.util.*;
+
+
+class Numbers1Makers1 
+{
+	int r,c;
+	public int[][] createTestData=new int[r][c];
+	
+	public void writeData(int[][] testData, String fileName) throws  IOException
+	{
+	
+		PrintWriter out = new PrintWriter(fileName);
+		FileWriter write = new FileWriter(fileName);
+		
+			for (int i= 0 ; i < r ; i++ )
+				{
+						for (int j= 0 ; j < c ;j++ ) 
+							{
+							
+							write.write(testData[i][j]+"\t");
+						}
+					write.write("\n");
+				}
+			//closing 
+			
+			write.close();
+			out.close();
+	}
+	public void readData(String fileName) throws  IOException
+	{
+		 FileReader fr = new FileReader(fileName);
+		 Scanner sc =new Scanner(fr);
+		 
+		 System.out.println("The Data in the File is : \n");
+		 while(sc.hasNextLine()) {
+	            System.out.println(sc.nextLine());
+		
+		 
+		 }
+		 sc.close();
+		
+	}
+}
+
+
+public class cv {
+
+	public static void main(String[] args)throws IOException {
+		// THE needed ass
+		Scanner in = new Scanner(System.in);
+		String name = "matrix.txt";
+		int r1,c1;
+		File ff = new File(name);
+		NumbersMakers1 nm = new NumbersMakers1();
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+		
+		//File create
+	
+
+		if (ff.createNewFile()) 
+		{
+		    System.out.println("File created.");
+		} 
+		else 
+		{
+		    System.out.println("File already exists.");
+		}
+		
+		// Matrix Size
+		
+		
+		System.out.println("Enter the number of rows of matrix : ");
+		r1 = in.nextInt();
+		nm.r=r1;
+		System.out.println("Enter the number columns of matrix : ");
+		c1 = in.nextInt();
+		nm.c=c1;
+		nm.createTestData= new int[r1][c1];
+		
+		// Entering the data
+System.out.println("Enter the elements of First matrix : ");
+		
+		for (int i= 0 ; i < r1 ; i++ )
+		{
+			
+			for (int j= 0 ; j < c1 ;j++ ) 
+				{
+					nm.createTestData[i][j] = in.nextInt();
+				}
+			
+		}
+
+	
+		nm.writeData(nm.createTestData, name);
+		nm.readData(name);
+	
+	//closing 
+	
+	in.close();
+	br.close();
+	}
+
+}
+
