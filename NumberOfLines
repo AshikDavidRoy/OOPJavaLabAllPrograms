@@ -1,0 +1,87 @@
+package Fileses;
+import java.io.*;
+
+public class LineNumber {
+
+	public static void main(String[] args)throws IOException {
+		
+		String n ="LineNumbers.txt";
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+						// File creation
+		
+		
+
+		File ff = new File(n);
+		if(ff.createNewFile()) 
+			{
+				System.out.println("Flie created Name : "+ff.getName());
+			}
+		else
+			{
+				System.out.println("Flie already created,The Flie created is :"+ff.getName());
+			}
+		
+		
+					//Inputing Data
+			
+		System.out.println("Enter the Data to be Entered : ");
+		String data = br.readLine();
+		
+		try 
+		{
+            FileWriter writer = new FileWriter(n, true);
+            writer.write(data);
+            writer.write("\n");
+            writer.close();
+        } catch (IOException e) {
+        	System.out.println("Error");
+        }
+		
+		// Number of line
+
+		FileInputStream f=new FileInputStream(n);
+		int m=f.available();
+		int j=1;
+		char ch;
+		System.out.print(j+": ");
+		 for(int a=0;a<m;++a)
+         {
+                     ch=(char)f.read();
+                     System.out.print(ch);
+                     
+                     if(ch=='\n')
+                     {++j;
+                       System.out.print( j+": ");
+                     }
+                
+                
+         }
+		 f.close();
+		 
+		 //Number of Lines ,Words,Chars
+		 
+		 int nl=1,nw=0;           
+         char ch1;
+         
+         	FileInputStream f1=new FileInputStream(n);
+          
+         	int n1=f1.available();
+          
+         		for(int i=0;i<n1;i++)
+         			{
+                      ch1=(char)f1.read();
+                      if(ch1=='\n')
+                      nl++;
+                      else if(ch1==' ')
+                      nw++;
+                    }
+         		
+         		
+          System.out.println("\nNumber of lines : "+nl);
+          System.out.println("\nNumber of words : "+(nl+nw));
+          System.out.println("\nNumber of characters : "+n1);
+          f1.close();
+          }
+
+}
